@@ -752,6 +752,9 @@ def fmt_date(value: str) -> str:
         parsed = dt.date.fromisoformat(value[:10])
         return f"{parsed.day} {parsed:%b %Y}"
     except ValueError:
+        month_only = re.match(r"^(\d{4})-(\d{2})$", value or "")
+        if month_only:
+            return dt.date(int(month_only[1]), int(month_only[2]), 1).strftime("%b %Y")
         return value
 
 
