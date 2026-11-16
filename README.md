@@ -8,22 +8,24 @@ A weekly literature digest on three research topics, searched separately and in 
 
 Papers that combine brain stimulation with executive functions or the basal ganglia are **core matches**, and every one is summarised. For each topic on its own, the six most relevant papers of the week are summarised, and the page links to the full weekly list on PubMed. Each summary has five points: aim, primary methods, results, discussion and caveats.
 
-The digest is built and run with Claude: two scheduled tasks and a hosted page. This repository is a **snapshot and backup**. The live page and the scheduled tasks run from a Claude account, so editing files here does not change them until they are republished.
+**Read it here:** https://rajatjoshi15.github.io/brain-stim-lit-digest/ (public copy, served by GitHub Pages from `docs/`).
+
+The digest is built and run with Claude: two scheduled tasks and a page hosted on claude.ai. The weekly refresh updates the claude.ai page and then pushes the same data files to `docs/data/` in this repo, so the public copy stays current. The scheduled tasks run from a Claude account, so editing files here does not change them.
 
 ## How it works
 
 | When (IST) | What | Where it runs |
 | --- | --- | --- |
-| Mondays 9:40 AM | **Refresh**: searches PubMed, bioRxiv (neuroscience) and medRxiv (neurology, psychiatry, rehabilitation) for the days since the last check, writes summaries, and publishes a new weekly data file to the page | Claude scheduled task, in the cloud ([prompts/refresh.md](prompts/refresh.md)) |
+| Mondays 9:40 AM | **Refresh**: searches PubMed, bioRxiv (neuroscience) and medRxiv (neurology, psychiatry, rehabilitation) for the days since the last check, writes summaries, publishes a new weekly data file to the claude.ai page, and pushes it to this repo | Claude scheduled task, in the cloud ([prompts/refresh.md](prompts/refresh.md)) |
 | Mondays 11:00 AM | **Reminder**: checks that this week's update was published and sends a push notification and an email with the page link | Claude scheduled task, in the cloud ([prompts/reminder.md](prompts/reminder.md)) |
-| Any time | **Page**: filter by topic, technique, latest update, unread or preprints; mark papers as read (synced across devices); copy DOIs for Zotero | Claude-hosted page, private to its owner |
+| Any time | **Page**: filter by topic, technique, latest update, unread or preprints; mark papers as read; copy DOIs for Zotero | claude.ai page (private; read marks sync across devices) and the GitHub Pages copy (public; read marks saved per browser) |
 
-The refresh only adds or replaces the JSON files in `site/data/`. It never touches `index.html`, so the page's features survive every update. Weekly files older than 12 weeks are removed.
+The refresh only adds or replaces the JSON files in `docs/data/`. It never touches `index.html`, so the page's features survive every update. Weekly files older than 12 weeks are removed.
 
 ## Repository layout
 
 ```
-site/
+docs/
   index.html                 The digest page: layout, filters, Zotero button, synced read marks
   data/manifest.json         Search queries, last-checked date per source, list of weeks, DOIs already added
   data/week-YYYY-MM-DD.json  One file per weekly update: date range, PubMed counts per topic, articles with summaries
@@ -61,10 +63,10 @@ A paper with a stimulation tag (`TMS`, `TUS`, `DBS`, `TDCS`) plus `EF` or `BG` i
 
 ## Viewing the page locally
 
-`index.html` loads its data with relative `fetch` calls, so serve the `site` folder rather than opening the file directly:
+`index.html` loads its data with relative `fetch` calls, so serve the `docs` folder rather than opening the file directly:
 
 ```
-cd site
+cd docs
 python3 -m http.server 8000
 ```
 

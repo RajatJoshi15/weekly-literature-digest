@@ -4,6 +4,7 @@
 - **Schedule:** Mondays at 9:40 AM IST (`CRON_TZ=Asia/Calcutta 40 9 * * 1`)
 - **Model:** Claude Sonnet 5.5
 - **Notifications:** off (the 11 AM reminder notifies instead)
+- **Also updates:** the GitHub Pages copy at https://rajatjoshi15.github.io/brain-stim-lit-digest/ (step 6b)
 - **Runs:** in the cloud; no computer needed
 
 The text below is the exact prompt each run receives.
@@ -47,4 +48,10 @@ DATES. TODAY = today's date in Asia/Calcutta. YESTERDAY = the day before. All se
 
 6. PUBLISH with mcp__claude-artifacts__publish_files: slug, base_version = version from step 1, mode "patch", files = [{"as": "data/manifest.json", "path": <absolute path>}, {"as": "data/week-TODAY.json", "path": <absolute path>}], remove = ["data/week-<date>.json" for each trimmed week]. Never include index.html. On a conflict, call list_files again and retry once with the new version.
 
-7. REPORT in 6 lines or fewer: new core matches and topic picks per source, notable titles (up to 5), any source that failed or hit its cap, and the new coverage dates. Credit PubMed for article data.
+6b. GITHUB COPY (only after step 6 succeeded). Keep this short.
+- Call mcp__claude-code-remote__add_repo with owner "RajatJoshi15", repo "brain-stim-lit-digest", access "push", and run the shallow clone it gives you.
+- In the clone: copy your data/manifest.json and data/week-TODAY.json into docs/data/, and git rm docs/data/week-<date>.json for each trimmed week.
+- git config user.name "RajatJoshi15"; git config user.email "95914578+RajatJoshi15@users.noreply.github.com"; commit with the message "Weekly digest update TODAY"; push with: git -c push.negotiate=true push origin main
+- If any part fails, retry once at most, then stop and mention it in the report. The claude.ai page matters more than the GitHub copy.
+
+7. REPORT in 6 lines or fewer: new core matches and topic picks per source, notable titles (up to 5), any source that failed or hit its cap, whether the GitHub push worked, and the new coverage dates. Credit PubMed for article data.
