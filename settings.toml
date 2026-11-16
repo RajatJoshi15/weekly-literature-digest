@@ -1,0 +1,85 @@
+# Weekly literature digest: your settings
+# Edit the values below, save, and you are done. Lines starting with # are notes.
+# The example topics are about brain stimulation; replace them with your own.
+
+[digest]
+title = "Weekly literature digest"
+lookback_days = 7               # how many days back each digest looks
+max_papers_per_topic = 10       # PubMed papers listed per topic (most relevant first)
+max_papers_per_combination = 25
+max_papers_per_researcher = 10
+include_abstracts = true        # free; abstracts appear in your private email only
+sources = ["pubmed", "biorxiv", "medrxiv", "bluesky"]   # remove any you don't want
+
+[email]
+notifications = true            # true: email every week at the time below. false: run it yourself when you want
+day = "Monday"
+time = "11:00"                  # 24-hour clock
+timezone = "Asia/Kolkata"       # e.g. "Europe/London", "America/New_York", "Asia/Kolkata"
+
+[ai]
+summaries = false               # true: five-point summary per paper (needs ANTHROPIC_API_KEY; you pay for use)
+model = "claude-haiku-5-5"
+max_papers = 40                 # cap on summaries per digest, to cap cost
+
+[preprints]
+biorxiv_categories = ["neuroscience"]   # [] means all categories
+medrxiv_categories = ["neurology", "psychiatry and clinical psychology", "rehabilitation medicine and physical therapy"]
+max_pages = 60                  # safety limit (100 preprints per page)
+
+[bluesky]
+researcher_posts = true         # free: posts by researchers below who have a Bluesky handle
+keyword_search = false          # free, but needs BLUESKY_HANDLE and BLUESKY_APP_PASSWORD
+max_posts_per_topic = 5
+only_posts_with_links = true    # keep only posts that link to a paper
+
+# ---------------------------------------------------------------- topics
+# Each topic is searched separately. Keywords are matched in titles and abstracts.
+# Short ALL-CAPS keywords (like TMS) match only in capitals, so "tms" in other words is ignored.
+# Advanced: anything containing [ ] is passed to PubMed as written, e.g. "Deep Brain Stimulation"[MeSH]
+
+[[topics]]
+name = "Brain stimulation"
+keywords = [
+  "transcranial magnetic stimulation", "TMS", "rTMS", "theta burst", "TMS-EEG",
+  "transcranial ultrasound", "transcranial focused ultrasound", "low-intensity focused ultrasound",
+  "ultrasound neuromodulation", "TUS", "deep brain stimulation",
+  "transcranial direct current stimulation", "tDCS", "transcranial alternating current stimulation", "tACS",
+]
+
+[[topics]]
+name = "Executive functions"
+keywords = [
+  "executive function", "executive functions", "executive functioning", "executive control",
+  "executive dysfunction", "cognitive control", "cognitive flexibility", "set shifting",
+  "task switching", "inhibitory control", "response inhibition", "cognitive inhibition", "working memory",
+]
+
+[[topics]]
+name = "Basal ganglia"
+keywords = [
+  "basal ganglia", "striatum", "striatal", "caudate", "putamen", "globus pallidus",
+  "subthalamic nucleus", "substantia nigra", "nucleus accumbens",
+]
+
+# ---------------------------------------------------------------- combinations
+# Papers that match ALL the listed topics. Listed first, and not capped as tightly.
+
+[[combinations]]
+name = "Brain stimulation x Executive functions"
+topics = ["Brain stimulation", "Executive functions"]
+
+[[combinations]]
+name = "Brain stimulation x Basal ganglia"
+topics = ["Brain stimulation", "Basal ganglia"]
+
+# ---------------------------------------------------------------- researchers
+# New papers by these people are listed first. Use the PubMed style "Lastname Initials".
+# orcid (most reliable), affiliation (narrows common names) and bluesky (their handle) are optional.
+# Remove the # in front of the four lines below to follow someone; copy the block for each person.
+
+# [[researchers]]
+# name = "Lastname AB"
+# orcid = "0000-0000-0000-0000"
+# affiliation = "University or institute"
+# bluesky = "handle.bsky.social"

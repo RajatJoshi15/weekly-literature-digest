@@ -1,88 +1,100 @@
-# Brain Stimulation Literature Digest
+# Weekly Literature Digest
 
-A weekly literature digest on three research topics, searched separately and in combination:
+**A free weekly email of new research papers from PubMed, bioRxiv and medRxiv, for your keywords and the researchers you follow.** Set it up once; every week it searches for you and sends you what's new. Optional AI summaries.
 
-- **Brain stimulation:** TMS, rTMS/iTBS, TMS-EEG, transcranial ultrasound stimulation (TUS), deep brain stimulation (DBS), tDCS and tACS
-- **Executive functions:** including cognitive control, cognitive flexibility, set shifting, task switching, inhibitory control, response inhibition and working memory
-- **Basal ganglia:** including striatum, caudate, putamen, globus pallidus, subthalamic nucleus, substantia nigra and nucleus accumbens
+Website: https://rajatjoshi15.github.io/weekly-literature-digest/
 
-Papers that combine brain stimulation with executive functions or the basal ganglia are **core matches**, and every one is summarised. For each topic on its own, the six most relevant papers of the week are summarised, and the page links to the full weekly list on PubMed. Each summary has five points: aim, primary methods, results, discussion and caveats.
+- **Your topics, your way:** list keywords per topic; get each topic separately, plus papers that combine topics.
+- **Follow researchers:** add names (or ORCIDs) and see their new papers and preprints first.
+- **Preprints included:** bioRxiv and medRxiv, filtered by your keywords and categories.
+- **Bluesky:** new posts from researchers you follow, and optionally posts linking to papers on your topics.
+- **On your schedule:** pick the day, time and time zone, or turn email off and refresh when you like.
+- **Free:** no AI and no cost unless you switch on AI summaries with your own key.
 
-**Read it here:** https://rajatjoshi15.github.io/brain-stim-lit-digest/ (public copy, served by GitHub Pages from `docs/`).
+## Choose your setup
 
-The digest is built and run with Claude: two scheduled tasks and a page hosted on claude.ai. The weekly refresh updates the claude.ai page and then pushes the same data files to `docs/data/` in this repo, so the public copy stays current. The scheduled tasks run from a Claude account, so editing files here does not change them.
-
-## How it works
-
-| When (IST) | What | Where it runs |
+| Option | In one line | Guide |
 | --- | --- | --- |
-| Mondays 9:40 AM | **Refresh**: searches PubMed, bioRxiv (neuroscience) and medRxiv (neurology, psychiatry, rehabilitation) for the days since the last check, writes summaries, publishes a new weekly data file to the claude.ai page, and pushes it to this repo | Claude scheduled task, in the cloud ([prompts/refresh.md](prompts/refresh.md)) |
-| Mondays 11:00 AM | **Reminder**: checks that this week's update was published and sends a push notification and an email with the page link | Claude scheduled task, in the cloud ([prompts/reminder.md](prompts/reminder.md)) |
-| Any time | **Page**: filter by topic, technique, latest update, unread or preprints; mark papers as read; copy DOIs for Zotero | claude.ai page (private; read marks sync across devices) and the GitHub Pages copy (public; read marks saved per browser) |
+| **Google Sheet** | Easiest: no coding or passwords; runs on Google and emails you from your own Gmail. | [Set up →](google-sheets/SETUP.md) |
+| **GitHub** | Free and fully automatic; good if you're comfortable with GitHub, and keeps an archive of every digest. | [Set up ↓](#set-up-on-github) |
+| **Your own computer** | Everything stays on your machine; sends only while your computer is on. | [Set up →](run-on-your-computer.md) |
+| **Claude** | Claude searches, summarises and builds a page for you; needs a Claude plan with scheduled tasks. | [Set up →](claude/SETUP.md) |
 
-The refresh only adds or replaces the JSON files in `docs/data/`. It never touches `index.html`, so the page's features survive every update. Weekly files older than 12 weeks are removed.
+All options search the same sources and use the same switches.
 
-## Repository layout
+## The switches
 
-```
-docs/
-  index.html                 The digest page: layout, filters, Zotero button, synced read marks
-  data/manifest.json         Search queries, last-checked date per source, list of weeks, DOIs already added
-  data/week-YYYY-MM-DD.json  One file per weekly update: date range, PubMed counts per topic, articles with summaries
-prompts/
-  refresh.md                 Exact instructions of the weekly refresh task
-  reminder.md                Exact instructions of the Monday reminder task
-exports/
-  BSLD_articles_*.csv        Spreadsheet export of the articles (opens in Excel or Google Sheets)
-```
+| Setting | ON | OFF |
+| --- | --- | --- |
+| **Email notifications** | You get the digest by email every week at your day, time and time zone. | Nothing is sent; refresh whenever you want new papers. |
+| **AI summaries** | Each paper gets a five-point summary: aim, methods, results, discussion, caveats. Needs your own [Anthropic API key](https://console.anthropic.com/); you pay for what you use, capped per digest. | You get everything below, free. |
+| **Bluesky keyword search** | Posts on your topics that link to papers. Free, but needs a Bluesky app password. | Only posts by researchers you follow (no login needed). |
 
-### Week file format
+**Always included, free:** title, authors, journal, publication date, study type (for example randomised controlled trial, review), which of your keywords matched, DOI link, PubMed link, free full-text link when one exists, an excerpt of the abstract (the results and conclusions when the abstract is structured), and a link to the full weekly list on PubMed.
 
-```json
-{
-  "added": "2026-11-16",
-  "range": { "from": "2026-11-09", "to": "2026-11-15" },
-  "counts": { "stim": 98, "ef": 152, "bg": 149 },
-  "items": [
-    {
-      "id": "PMID, or the DOI for preprints",
-      "date": "YYYY-MM-DD",
-      "source": "PubMed | bioRxiv | medRxiv",
-      "journal": "ISO abbreviation",
-      "title": "...",
-      "doi": "...",
-      "tags": ["TMS", "TUS", "DBS", "TDCS", "EF", "BG"],
-      "type": "Study design",
-      "points": [["Aim", "..."], ["Primary methods", "..."], ["Results", "..."], ["Discussion", "..."], ["Caveats", "..."]]
-    }
-  ]
-}
-```
+## What a digest looks like
 
-A paper with a stimulation tag (`TMS`, `TUS`, `DBS`, `TDCS`) plus `EF` or `BG` is shown as a core match.
+> **Brain stimulation x Executive functions**
+> 12 new on PubMed · see the full list
+>
+> **Theta-burst stimulation improves inhibitory control in Parkinson's disease**
+> Smith A, Jones B, Lee C et al. · Brain Stimul · 10 Nov 2026 · Randomized Controlled Trial
+> Matched: theta burst, inhibitory control
+> **Results:** Response inhibition improved after active but not sham stimulation …
+> DOI · PubMed · Free full text
 
-## Viewing the page locally
+(Example entry for illustration.)
 
-`index.html` loads its data with relative `fetch` calls, so serve the `docs` folder rather than opening the file directly:
+## Set up on GitHub
 
-```
-cd docs
-python3 -m http.server 8000
-```
+1. Click **Use this template → Create a new repository** at the top of this page. A private repository is fine.
+2. In your new repository, open [`settings.toml`](settings.toml), click the pencil icon, and edit:
+   - your **topics** and keywords, any **combinations**, and **researchers** to follow;
+   - `[email]`: `notifications`, `day`, `time` and `timezone`;
+   - `[ai] summaries` and the sources you want.
+   Then click **Commit changes**.
+3. Add your email details as secrets: **Settings → Secrets and variables → Actions → New repository secret**:
+   - `EMAIL_ADDRESS`: the Gmail address that sends the digest.
+   - `EMAIL_APP_PASSWORD`: a Gmail [app password](https://myaccount.google.com/apppasswords) (needs 2-Step Verification). Not your normal password, and you can revoke it at any time.
+   - Optional: `EMAIL_TO` (send somewhere else), `ANTHROPIC_API_KEY` (AI summaries), `BLUESKY_HANDLE` and `BLUESKY_APP_PASSWORD` (Bluesky keyword search), `NCBI_API_KEY` (faster PubMed), and `SMTP_HOST`/`SMTP_PORT` for non-Gmail accounts.
 
-Then open http://localhost:8000. Read and Zotero marks are saved in your browser when the page runs outside Claude.
+   Secrets are encrypted: nobody can read them, even in a public repository.
+4. Open the **Actions** tab, enable workflows if GitHub asks, choose **Weekly literature digest → Run workflow**, and tick **Preview only** for a first test. The preview is attached to the run as `digest-preview`.
 
-## Adding papers to Zotero
+That's it. The workflow checks once an hour and sends the digest at your chosen time (GitHub can run it a few minutes late). With email notifications off, use **Run workflow** whenever you want a digest; each one is saved in the `digests` folder.
 
-Each article has an **Add to Zotero** button that copies its DOI. In Zotero, use **Add Item by Identifier** (the magic-wand button) and paste. Several DOIs can be pasted at once.
+**Cost:** free. The hourly check takes a few seconds and fits within GitHub's free Actions allowance, including for private repositories.
 
-## Notes
+## FAQ
 
-- The PubMed connector accepts at most 20 boolean operators per query, so the three topics are searched separately and core matches are found by intersecting the results.
-- bioRxiv and medRxiv have no keyword search through the connector, so the refresh pages through every preprint posted in the window and filters by title and abstract.
-- Google Scholar is not included.
-- The first weekly file (2026-11-16) was picked by publication date from 16 Oct to 16 Nov 2026, before the topic split.
+**How do I get weekly PubMed alerts by email?**
+Pick a setup above, list your keywords, and turn **Email notifications** on. You get one email a week with the new PubMed papers for each topic, plus bioRxiv and medRxiv preprints.
 
-## Attribution
+**Can I follow specific researchers or authors?**
+Yes. Add them as "Lastname Initials" (for example `Smith JA`). Adding an ORCID is the most reliable way to avoid people with the same name; an affiliation also helps.
 
-Article metadata comes from [PubMed](https://pubmed.ncbi.nlm.nih.gov/) (NCBI), [bioRxiv](https://www.biorxiv.org/) and [medRxiv](https://www.medrxiv.org/). Every entry links to its DOI. Summaries are written by Claude from each abstract, in its own words. Check the original paper before citing.
+**Does it include preprints?**
+Yes: bioRxiv and medRxiv, matched against your keywords in titles and abstracts. You can limit each server to the categories you care about. Preprints are not peer reviewed, and are labelled as such.
+
+**How are papers chosen?**
+For each topic, the most relevant new PubMed papers of the week (PubMed's own relevance ranking), up to the number you set, plus matching preprints. Combinations and researchers come first. A paper appears only once, and never again in later weeks.
+
+**Can I add papers to Zotero?**
+Copy a paper's DOI from the digest, then in Zotero use **Add Item by Identifier** (the magic-wand button) and paste. Zotero fills in the full record. You can paste several DOIs at once.
+
+**Why not Google Scholar or X (Twitter)?**
+Google Scholar has no API that tools like this can use. X now charges for every post read through its API, so it can't be part of a free tool. Bluesky's API is open and free, so it is included.
+
+**What do AI summaries cost?**
+Only what your API provider charges for the summaries you generate. A weekly digest is a few dozen short abstracts, and `max_papers` caps how many are summarised.
+
+**Is my data private?**
+Your settings live in your own copy (sheet, repository or computer). Email passwords and API keys are stored as secrets, never in files. Abstracts appear only in your private email; the archive saved in a repository has titles, links and summaries only.
+
+## Data sources
+
+Paper data comes from [PubMed](https://pubmed.ncbi.nlm.nih.gov/) via the NCBI E-utilities, and from the [bioRxiv and medRxiv API](https://api.biorxiv.org/). Posts come from the public [Bluesky API](https://docs.bsky.app/). Please follow their terms of use; each digest links to every original record.
+
+## Feedback
+
+Ideas, bugs and questions are welcome in [Issues](https://github.com/RajatJoshi15/weekly-literature-digest/issues). If the digest is useful to you, a star helps other researchers find it.
