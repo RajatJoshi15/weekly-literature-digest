@@ -947,6 +947,10 @@ def main(argv: list[str] | None = None) -> int:
     html_body = render_html(digest, include_abstracts)
     (ROOT / "preview.html").write_text("<!DOCTYPE html><meta charset=\"utf-8\"><title>Digest preview</title>"
                                        + html_body, encoding="utf-8")
+    summary_file = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary_file:  # show the digest on the GitHub Actions run page
+        with open(summary_file, "a", encoding="utf-8") as fh:
+            fh.write(render_markdown(digest))
     if args.dry_run:
         log("Dry run: wrote preview.html; no email sent and nothing saved.")
         return 0

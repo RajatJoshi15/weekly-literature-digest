@@ -59,7 +59,7 @@ All options search the same sources and use the same switches.
    - Optional: `EMAIL_TO` (send somewhere else), `ANTHROPIC_API_KEY` (AI summaries), `BLUESKY_HANDLE` and `BLUESKY_APP_PASSWORD` (Bluesky keyword search), `NCBI_API_KEY` (faster PubMed), and `SMTP_HOST`/`SMTP_PORT` for non-Gmail accounts.
 
    Secrets are encrypted: nobody can read them, even in a public repository.
-4. Open the **Actions** tab, enable workflows if GitHub asks, choose **Weekly literature digest → Run workflow**, and tick **Preview only** for a first test. The preview is attached to the run as `digest-preview`.
+4. Open the **Actions** tab, enable workflows if GitHub asks, choose **Weekly literature digest → Run workflow**, and tick **Preview only** for a first test. The digest appears on the run's summary page.
 
 That's it. The workflow checks once an hour and sends the digest at your chosen time (GitHub can run it a few minutes late). With email notifications off, use **Run workflow** whenever you want a digest; each one is saved in the `digests` folder.
 
