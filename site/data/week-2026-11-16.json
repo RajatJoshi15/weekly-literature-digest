@@ -1,0 +1,506 @@
+{
+ "added": "2026-11-16",
+ "range": {
+  "from": "2026-11-09",
+  "to": "2026-11-15"
+ },
+ "counts": {
+  "stim": 98,
+  "ef": 152,
+  "bg": 149
+ },
+ "note": "First batch: picked from PubMed by publication date, 16 Oct to 16 Nov 2026, before the topic split.",
+ "items": [
+  {
+   "id": "42901398",
+   "date": "2026-10-21",
+   "source": "PubMed",
+   "journal": "J Affect Disord",
+   "title": "Right putaminal gray matter change tracks psychomotor recovery after accelerated iTBS in melancholic treatment-resistant depression",
+   "doi": "10.1016/j.jad.2026.122652",
+   "tags": [
+    "TMS",
+    "BG"
+   ],
+   "type": "Randomized trial",
+   "points": [
+    [
+     "Aim",
+     "Test whether putamen volume change tracks early psychomotor recovery after accelerated theta-burst stimulation (iTBS) in melancholic treatment-resistant depression."
+    ],
+    [
+     "Primary methods",
+     "Structural MRI (voxel-based morphometry) in 61 patients and 77 controls, then a double-blind, sham-controlled trial of 20 sessions over four days; 50 patients had complete data."
+    ],
+    [
+     "Results",
+     "Patients had more right putamen volume at baseline. After active stimulation, putamen increase tracked psychomotor improvement, but not overall depression, and the link was absent after sham."
+    ],
+    [
+     "Discussion",
+     "The authors frame the change as a possible marker of early psychomotor recovery, not as structural normalisation."
+    ],
+    [
+     "Caveats",
+     "Correlational; 25 patients per arm; the psychomotor link is a secondary pattern."
+    ]
+   ]
+  },
+  {
+   "id": "42911058",
+   "date": "2026-10-28",
+   "source": "PubMed",
+   "journal": "Neuroreport",
+   "title": "Deep brain stimulation of the nucleus basalis magnocellularis ameliorates autistic behavior in a rat model of autism via cholinergic modulation in the prefrontal cortex",
+   "doi": "10.1097/WNR.0000000000002308",
+   "tags": [
+    "DBS"
+   ],
+   "type": "Animal study",
+   "points": [
+    [
+     "Aim",
+     "Test whether stimulating the nucleus basalis magnocellularis improves autism-like behaviour in a prenatal valproic-acid rat model."
+    ],
+    [
+     "Primary methods",
+     "Male offspring were split into control, VPA, implanted-only and stimulated groups; stimulation ran two hours a day for two weeks, with behaviour tests and acetylcholinesterase and choline acetyltransferase staining."
+    ],
+    [
+     "Results",
+     "Stimulation improved social behaviour and increased acetylcholinesterase-positive neurons in the medial prefrontal cortex."
+    ],
+    [
+     "Discussion",
+     "The benefit is linked to cholinergic signalling in prefrontal cortex, supporting a basal-forebrain route for DBS effects."
+    ],
+    [
+     "Caveats",
+     "Animal model; small groups (five saline controls, 16 VPA-exposed rats); the marker link is correlational."
+    ]
+   ]
+  },
+  {
+   "id": "42456821",
+   "date": "2026-07-15",
+   "source": "PubMed",
+   "journal": "J Affect Disord",
+   "title": "Treatment-characteristic brain structural changes in depression: a multi-center longitudinal observational study",
+   "doi": "10.1016/j.jad.2026.122269",
+   "tags": [
+    "TMS"
+   ],
+   "type": "Longitudinal observational",
+   "points": [
+    [
+     "Aim",
+     "Compare how grey matter volume changes across four depression treatments: medication, CBT, ECT and rTMS."
+    ],
+    [
+     "Primary methods",
+     "155 patients and 152 controls with MRI at three timepoints; voxel-based morphometry with ComBat scanner harmonisation."
+    ],
+    [
+     "Results",
+     "Only ECT and medication changed grey matter over time; CBT and rTMS did not, although all four groups improved clinically. Later left insula loss correlated with worsening on medication."
+    ],
+    [
+     "Discussion",
+     "Treatments leave different structural signatures, and the insula could serve as a long-term biomarker."
+    ],
+    [
+     "Caveats",
+     "Observational design; the rTMS arm had only 20 patients."
+    ]
+   ]
+  },
+  {
+   "id": "42997980",
+   "date": "2026-11-07",
+   "source": "PubMed",
+   "journal": "Dev Neurorehabil",
+   "title": "Association of high-frequency repetitive transcranial magnetic stimulation with 6-month cognitive outcomes and white matter lesion progression in patients with cerebral small vessel disease and cognitive impairment",
+   "doi": "10.1080/17518423.2026.2746719",
+   "tags": [
+    "TMS",
+    "EF"
+   ],
+   "type": "Retrospective cohort",
+   "points": [
+    [
+     "Aim",
+     "Assess whether 10 Hz rTMS over the left DLPFC relates to six-month cognitive outcomes and white matter lesion progression in small vessel disease."
+    ],
+    [
+     "Primary methods",
+     "Retrospective cohort of 427 patients (228 rTMS, 199 medication-only) with complete data; primary outcome was change in MoCA; propensity-matched sensitivity analysis."
+    ],
+    [
+     "Results",
+     "The rTMS group gained more on MoCA (mean difference 1.11), with better MMSE, TMT-B and delayed recall; no imaging difference was significant."
+    ],
+    [
+     "Discussion",
+     "Cognitive benefit may come from plasticity and network changes rather than from slowing lesion growth."
+    ],
+    [
+     "Caveats",
+     "Retrospective and based on routine care; subgroup findings are exploratory."
+    ]
+   ]
+  },
+  {
+   "id": "42608260",
+   "date": "2026-08-18",
+   "source": "PubMed",
+   "journal": "Ultrasound Med Biol",
+   "title": "Deep-brain Neuromodulation in Parkinson's Disease: Convergent Mechanisms and Translational Stratification of Deep Brain Stimulation and Low-intensity Focused Ultrasound",
+   "doi": "10.1016/j.ultrasmedbio.2026.07.030",
+   "tags": [
+    "TUS",
+    "DBS",
+    "BG"
+   ],
+   "type": "Review",
+   "points": [
+    [
+     "Aim",
+     "Compare DBS and low-intensity focused ultrasound as deep-brain approaches in Parkinson's disease, looking at mechanisms."
+    ],
+    [
+     "Primary methods",
+     "Mechanistic and translational review of clinical and preclinical evidence."
+    ],
+    [
+     "Results",
+     "The two share some mechanisms, including network modulation, synaptic remodelling and reduced neuroinflammation. DBS has far stronger clinical evidence."
+    ],
+    [
+     "Discussion",
+     "Deep-brain neuromodulation should be viewed as one multi-dimensional framework, with biomarkers and standard endpoints needed."
+    ],
+    [
+     "Caveats",
+     "A narrative review, not systematic; clinical ultrasound evidence is still limited."
+    ]
+   ]
+  },
+  {
+   "id": "42600181",
+   "date": "2026-08-14",
+   "source": "PubMed",
+   "journal": "J Neurosurg",
+   "title": "Implantation of autologous peripheral nerve tissue to the nucleus basalis of Meynert in patients with Parkinson's disease during deep brain stimulation surgery: a 2-year report",
+   "doi": "10.3171/2026.3.JNS251474",
+   "tags": [
+    "DBS",
+    "EF"
+   ],
+   "type": "Open-label pilot",
+   "points": [
+    [
+     "Aim",
+     "Assess the safety, feasibility and clinical response of placing a nerve graft in the nucleus basalis during DBS surgery."
+    ],
+    [
+     "Primary methods",
+     "Seven patients had pallidal DBS plus a sural nerve graft to the nucleus basalis, followed at six-month intervals for up to two years (five completed 24 months)."
+    ],
+    [
+     "Results",
+     "No serious related adverse events; cognition matched standard DBS patients; motor and quality-of-life scores were slightly worse, with small non-motor gains."
+    ],
+    [
+     "Discussion",
+     "The procedure appears safe and feasible without a substantial added cognitive risk, and the authors suggest possible target-specific effects."
+    ],
+    [
+     "Caveats",
+     "Seven patients, no control group, and fewer patients at 24 months."
+    ]
+   ]
+  },
+  {
+   "id": "42505019",
+   "date": "2026-07-27",
+   "source": "PubMed",
+   "journal": "Ann Neurol",
+   "title": "Outcomes of Bilateral Globus Pallidus Internus Deep Brain Stimulation in GNAO1-Related Disorder: An International Multicenter Experience",
+   "doi": "10.1002/ana.78310",
+   "tags": [
+    "DBS",
+    "BG"
+   ],
+   "type": "Retrospective multicenter",
+   "points": [
+    [
+     "Aim",
+     "Define the impact of bilateral pallidal DBS in GNAO1-related movement disorder, the largest cohort to date."
+    ],
+    [
+     "Primary methods",
+     "Retrospective multicentre cohort of 46 patients across 17 centres, with a mean follow-up of 4.5 years; primary outcome was dyskinetic crisis burden."
+    ],
+    [
+     "Results",
+     "Crises fell in 38 of 40 patients, and motor scores improved by about 27.5%; complications occurred in 19.6%, mostly in emergency implants."
+    ],
+    [
+     "Discussion",
+     "DBS works mainly to prevent crises and reduce overall burden, rather than restoring function, which supports earlier elective surgery."
+    ],
+    [
+     "Caveats",
+     "Retrospective; functional classification was largely unchanged."
+    ]
+   ]
+  },
+  {
+   "id": "42332026",
+   "date": "2026-06-22",
+   "source": "PubMed",
+   "journal": "Mol Psychiatry",
+   "title": "Deep brain stimulation of the nucleus accumbens for severe self-injurious behaviour in children: long-term outcomes from a first-in-human pilot trial",
+   "doi": "10.1038/s41380-026-03710-4",
+   "tags": [
+    "DBS",
+    "BG"
+   ],
+   "type": "Pilot trial",
+   "points": [
+    [
+     "Aim",
+     "Report long-term outcomes of accumbens DBS for severe self-injury in children with autism."
+    ],
+    [
+     "Primary methods",
+     "Single-centre first-in-human trial: six participants aged 7–14, bilateral implantation, followed for at least 24 months (mean 32.5)."
+    ],
+    [
+     "Results",
+     "Self-injury frequency and severity fell and stayed low; one device infection led to relapse, which reversed after re-implantation."
+    ],
+    [
+     "Discussion",
+     "Modulating reward circuitry may durably change maladaptive behaviour in childhood neurodevelopmental disorders."
+    ],
+    [
+     "Caveats",
+     "Six patients; single centre; the withdrawal-rechallenge evidence rests on one participant."
+    ]
+   ]
+  },
+  {
+   "id": "42965149",
+   "date": "2026-10-28",
+   "source": "PubMed",
+   "journal": "Tremor Other Hyperkinet Mov",
+   "title": "Changes in the Cutaneous Silent Period Following Pallidal Deep Brain Stimulation in Patients with Cervical Dystonia",
+   "doi": "10.5334/tohm.1241",
+   "tags": [
+    "DBS",
+    "BG"
+   ],
+   "type": "Clinical neurophysiology",
+   "points": [
+    [
+     "Aim",
+     "Track spinal inhibition, measured by the cutaneous silent period, before and after pallidal DBS in cervical dystonia."
+    ],
+    [
+     "Primary methods",
+     "18 patients measured before and after bilateral GPi-DBS, compared with 18 matched healthy controls."
+    ],
+    [
+     "Results",
+     "Silent-period end latency and duration increased early after surgery while stimulation was on; neither timepoint differed from controls, and changes did not track clinical improvement."
+    ],
+    [
+     "Discussion",
+     "Spinal inhibition appears to shift dynamically during active DBS, linked to wider motor-network modulation."
+    ],
+    [
+     "Caveats",
+     "Small sample; short-term follow-up; no correlation with clinical gains."
+    ]
+   ]
+  },
+  {
+   "id": "42955392",
+   "date": "2026-10-28",
+   "source": "PubMed",
+   "journal": "Neurol Sci",
+   "title": "Effects of STN-DBS on voluntary facial mimicry in Parkinson's patients: a pilot study",
+   "doi": "10.1007/s10072-026-09512-4",
+   "tags": [
+    "DBS",
+    "BG"
+   ],
+   "type": "Pilot study",
+   "points": [
+    [
+     "Aim",
+     "Test whether subthalamic DBS changes voluntary facial expressiveness in Parkinson's disease."
+    ],
+    [
+     "Primary methods",
+     "18 patients recorded in stimulation-on and stimulation-off states (both on medication) while posing six basic emotions and neutral; facial action units were scored automatically."
+    ],
+    [
+     "Results",
+     "Motor scores improved with stimulation. Mimicry was weaker with stimulation off for neutral, happiness, fear and anger, and stronger for sadness."
+    ],
+    [
+     "Discussion",
+     "Subthalamic DBS seems to shape emotional motor output beyond classic motor control, which may help social communication."
+    ],
+    [
+     "Caveats",
+     "Pilot size; a single within-patient comparison."
+    ]
+   ]
+  },
+  {
+   "id": "43011579",
+   "date": "2026-10-27",
+   "source": "PubMed",
+   "journal": "Front Pediatr",
+   "title": "Applications of non-invasive brain stimulation in the treatment of children with cerebral palsy: a narrative review",
+   "doi": "10.3389/fped.2026.1867739",
+   "tags": [
+    "TMS",
+    "TDCS",
+    "EF"
+   ],
+   "type": "Narrative review",
+   "points": [
+    [
+     "Aim",
+     "Summarise evidence for tDCS and rTMS in children with cerebral palsy."
+    ],
+    [
+     "Primary methods",
+     "Narrative review informed by a structured literature search."
+    ],
+    [
+     "Results",
+     "Small to moderate trials suggest added benefit for gross motor function, gait, balance, spasticity and some cognitive and communication outcomes when paired with rehabilitation; short-term safety was acceptable."
+    ],
+    [
+     "Discussion",
+     "Targets include primary motor, dorsolateral prefrontal and language cortex, with plasticity-based mechanisms and individualised protocols."
+    ],
+    [
+     "Caveats",
+     "Not systematic; safety data are short-term."
+    ]
+   ]
+  },
+  {
+   "id": "42900661",
+   "date": "2026-10-20",
+   "source": "PubMed",
+   "journal": "Stereotact Funct Neurosurg",
+   "title": "The Pallidothalamic Tract in Functional Neurosurgery: A Systematic Review",
+   "doi": "10.1159/sfn/aeuag006",
+   "tags": [
+    "DBS",
+    "BG",
+    "TUS"
+   ],
+   "type": "Systematic review",
+   "points": [
+    [
+     "Aim",
+     "Synthesise outcomes of interventions targeting the pallidothalamic tract."
+    ],
+    [
+     "Primary methods",
+     "PRISMA 2020, PROSPERO-registered; 40 studies and 483 patients across five modalities, including MR-guided focused ultrasound, DBS, radiofrequency and lesioning."
+    ],
+    [
+     "Results",
+     "Average UPDRS-III improvement of 39% in Parkinson's disease, 57% on BFMDRS in dystonia, and seizure reduction in 71% of drug-resistant epilepsy patients."
+    ],
+    [
+     "Discussion",
+     "Dual-target strategies may add benefit, and prospective trials are needed to confirm efficacy and safety."
+    ],
+    [
+     "Caveats",
+     "Mostly small uncontrolled studies; inconsistent adverse-event reporting."
+    ]
+   ]
+  },
+  {
+   "id": "42897155",
+   "date": "2026-10-19",
+   "source": "PubMed",
+   "journal": "NPJ Parkinsons Dis",
+   "title": "Dopamine amplifies subthalamic long-latency responses to cortical stimulation in patients with Parkinson's disease",
+   "doi": "10.1038/s41531-026-01567-6",
+   "tags": [
+    "DBS",
+    "BG"
+   ],
+   "type": "Invasive recording",
+   "points": [
+    [
+     "Aim",
+     "Determine how dopamine affects signal flow along the cortico-subthalamic hyperdirect pathway."
+    ],
+    [
+     "Primary methods",
+     "Bidirectional stimulation with invasive recordings in 15 patients undergoing DBS surgery, across medication states."
+    ],
+    [
+     "Results",
+     "The short-latency hyperdirect response was unchanged by medication; later responses were amplified by dopamine; subthalamic-to-cortex responses were unchanged."
+    ],
+    [
+     "Discussion",
+     "Fast and slow components of cortex-basal ganglia communication are affected differently by dopamine."
+    ],
+    [
+     "Caveats",
+     "Intraoperative setting; 15 patients."
+    ]
+   ]
+  },
+  {
+   "id": "42954184",
+   "date": "2026-10-29",
+   "source": "PubMed",
+   "journal": "Subst Use Misuse",
+   "title": "Transcranial Direct Current Stimulation (tDCS) and Smoking Cessation: Clinical and Neurocognitive Outcomes Among Turkish Adults",
+   "doi": "10.1080/10826084.2026.2752116",
+   "tags": [
+    "TDCS",
+    "EF"
+   ],
+   "type": "Randomised sham-controlled",
+   "points": [
+    [
+     "Aim",
+     "Test whether anodal tDCS over the left DLPFC helps smokers quit, and whether it changes executive function."
+    ],
+    [
+     "Primary methods",
+     "Active versus sham tDCS in smokers with high nicotine dependence, one session per day, five days a week for two weeks; executive tests before and after; weekly follow-up for a month."
+    ],
+    [
+     "Results",
+     "No significant group difference in smoking outcomes or clinical measures after adjusting for baseline imbalance, and no difference on executive tests."
+    ],
+    [
+     "Discussion",
+     "tDCS was not effective for smoking cessation here, and the null executive result runs against the wider DLPFC literature."
+    ],
+    [
+     "Caveats",
+     "Modest sample; baseline groups differed on smoking measures; context may differ from other populations."
+    ]
+   ]
+  }
+ ]
+}

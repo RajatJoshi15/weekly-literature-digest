@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brain Stimulation Literature Digest</title>
+<style>
+  :root { --bg:#fbfaf7; --card:#ffffff; --ink:#1d1d1b; --muted:#6b6a64; --line:#e5e2da; --accent:#2f5d50; --tag:#eef3f0; --core:#f3ecdc; --coreink:#7a5a12; --shadow:0 6px 24px rgba(0,0,0,.12); }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#161614; --card:#1f1f1c; --ink:#ecebe6; --muted:#a6a49b; --line:#33332f; --accent:#8fc3b1; --tag:#27332e; --core:#3a3222; --coreink:#e7c77d; --shadow:0 6px 24px rgba(0,0,0,.5); }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--ink); line-height:1.5; }
+  main { max-width: 880px; margin: 0 auto; padding: 20px 16px 96px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: .92rem; margin-bottom: 4px; }
+  .sync { color: var(--muted); font-size: .8rem; margin-bottom: 14px; min-height: 1.2em; }
+  .controls { display:flex; flex-wrap:wrap; gap:8px; margin-bottom: 10px; align-items:center; }
+  .label { color: var(--muted); font-size: .8rem; width: 100%; margin-bottom: -2px; }
+  input[type=search] { flex: 1 1 220px; padding: 9px 12px; border:1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); font: inherit; }
+  button { font: inherit; cursor: pointer; }
+  button.chip { border:1px solid var(--line); background: var(--card); color: var(--ink); padding: 7px 12px; border-radius: 999px; font-size: .88rem; }
+  button.chip[aria-pressed="true"] { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  button.plain { border:1px solid var(--line); background: var(--card); color: var(--ink); padding: 7px 12px; border-radius: 8px; font-size: .85rem; }
+  .count { color: var(--muted); font-size: .88rem; margin: 6px 0 14px; }
+  .weekbox { background: var(--card); border:1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 4px 0 14px; font-size: .88rem; }
+  .weekbox strong { display:block; margin-bottom: 4px; }
+  .weekbox a { margin-right: 12px; white-space: nowrap; }
+  .card { background: var(--card); border:1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+  .card.picked { border-color: var(--accent); }
+  .head { display:flex; gap:10px; align-items:flex-start; }
+  .head input { margin-top: 5px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+  .card h2 { font-size: 1.02rem; margin: 0 0 6px; line-height: 1.35; }
+  .meta { color: var(--muted); font-size: .85rem; margin-bottom: 8px; }
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom: 8px; }
+  .tag { background: var(--tag); color: var(--accent); font-size: .76rem; padding: 2px 8px; border-radius: 999px; }
+  .tag.core { background: var(--core); color: var(--coreink); font-weight: 600; }
+  .tag.src { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+  ul.points { margin: 4px 0 10px; padding-left: 18px; font-size: .93rem; }
+  ul.points li { margin-bottom: 4px; }
+  ul.points strong { color: var(--accent); font-weight: 600; }
+  .actions { display:flex; flex-wrap:wrap; gap:8px; align-items:center; font-size:.85rem; }
+  .actions a { margin-left: 4px; word-break: break-all; }
+  button.zot { border:1px solid var(--accent); background: transparent; color: var(--accent); padding: 5px 10px; border-radius: 8px; font-size: .82rem; font-weight: 600; }
+  button.zot.done { border-style: dashed; font-weight: 500; }
+  button.link { color: var(--muted); background: none; border: none; padding: 0; text-decoration: underline; font-size: .82rem; }
+  .new { color: var(--accent); font-weight: 600; font-size: .78rem; margin-left: 6px; }
+  a { color: var(--accent); }
+  details.help { background: var(--card); border:1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin: 0 0 14px; font-size: .88rem; }
+  details.help summary { cursor: pointer; font-weight: 600; }
+  details.help ul { padding-left: 18px; margin: 8px 0 4px; }
+  .notes { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 14px; font-size: .86rem; color: var(--muted); }
+  .notes p { margin: 6px 0; }
+  .empty { color: var(--muted); padding: 24px 0; text-align:center; }
+  #bar { position: fixed; left: 50%; transform: translateX(-50%); bottom: 14px; width: min(880px, calc(100% - 24px)); background: var(--card); border:1px solid var(--accent); border-radius: 12px; box-shadow: var(--shadow); padding: 10px 12px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  #bar[hidden] { display:none; }
+  #bar .n { font-weight: 600; margin-right: auto; }
+  #bar button.primary { background: var(--accent); color: var(--bg); border: none; padding: 8px 12px; border-radius: 8px; font-size: .85rem; font-weight: 600; }
+  #toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 84px; max-width: min(560px, calc(100% - 24px)); background: var(--ink); color: var(--bg); padding: 10px 14px; border-radius: 10px; font-size: .88rem; box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: opacity .2s; }
+  #toast.show { opacity: 1; }
+  #manual { position: fixed; inset: 0; background: rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; padding: 16px; }
+  #manual[hidden] { display:none; }
+  #manual .box { background: var(--card); color: var(--ink); border-radius: 12px; padding: 16px; width: min(520px, 100%); box-shadow: var(--shadow); }
+  #manual textarea { width: 100%; min-height: 90px; margin: 8px 0; font: .85rem ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--bg); color: var(--ink); border:1px solid var(--line); border-radius: 8px; padding: 8px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Brain Stimulation Literature Digest</h1>
+  <div class="sub" id="sub">Loading…</div>
+  <div class="sync" id="sync"></div>
+
+  <div class="controls">
+    <input type="search" id="q" placeholder="Filter by title, keyword or journal…" aria-label="Filter">
+    <button class="plain" id="readAll">Mark shown as read</button>
+  </div>
+  <div class="controls" id="sections">
+    <div class="label">Topic</div>
+    <button class="chip" data-s="all" aria-pressed="true">All</button>
+    <button class="chip" data-s="core" aria-pressed="false">Stimulation × EF/BG</button>
+    <button class="chip" data-s="stim" aria-pressed="false">Brain stimulation</button>
+    <button class="chip" data-s="ef" aria-pressed="false">Executive functions</button>
+    <button class="chip" data-s="bg" aria-pressed="false">Basal ganglia</button>
+  </div>
+  <div class="controls" id="filters">
+    <div class="label">Show</div>
+    <button class="chip" data-f="any" aria-pressed="true">Everything</button>
+    <button class="chip" data-f="latest" aria-pressed="false">Latest update</button>
+    <button class="chip" data-f="unread" aria-pressed="false">Unread</button>
+    <button class="chip" data-f="TMS" aria-pressed="false">TMS</button>
+    <button class="chip" data-f="TUS" aria-pressed="false">Ultrasound</button>
+    <button class="chip" data-f="DBS" aria-pressed="false">DBS</button>
+    <button class="chip" data-f="TDCS" aria-pressed="false">tDCS / tACS</button>
+    <button class="chip" data-f="preprint" aria-pressed="false">Preprints</button>
+  </div>
+
+  <div class="weekbox" id="weekbox" hidden></div>
+
+  <details class="help">
+    <summary>How "Add to Zotero" works</summary>
+    <p>The button copies the article's DOI. Then, in Zotero:</p>
+    <ul>
+      <li><strong>Desktop app:</strong> click the magic-wand button (Add Item by Identifier), paste, and press Enter. Zotero fetches the full record.</li>
+      <li><strong>Web library, including on your phone:</strong> open <a href="https://www.zotero.org/mylibrary" target="_blank" rel="noopener">zotero.org/mylibrary</a>, choose "Add by identifier" and paste.</li>
+      <li><strong>Several at once:</strong> tick the boxes on the cards, then "Copy DOIs for Zotero". Paste them all into the same box; Zotero accepts one per line.</li>
+      <li><strong>Zotero Connector:</strong> open the DOI link in your browser and click the Zotero button in the toolbar.</li>
+    </ul>
+  </details>
+
+  <div class="count" id="count"></div>
+  <div id="list"><div class="empty">Loading articles…</div></div>
+
+  <div class="notes">
+    <p><strong>What is collected.</strong> Three topics, searched separately: brain stimulation (TMS, TMS-EEG, TUS, DBS, tDCS, tACS), executive functions (including cognitive control, cognitive flexibility, set shifting, task switching, inhibitory control, response inhibition and working memory) and the basal ganglia (including striatum, caudate, putamen, globus pallidus, subthalamic nucleus, substantia nigra and nucleus accumbens). Papers that combine stimulation with executive functions or the basal ganglia are "core matches" and are all included. For each topic on its own, the six most relevant papers of the week are summarised; the box above links to the full weekly lists on PubMed.</p>
+    <p><strong>Sources.</strong> PubMed, bioRxiv (neuroscience) and medRxiv (neurology, psychiatry and rehabilitation). Preprints are not peer reviewed. Google Scholar is not included.</p>
+    <p id="covNote"></p>
+    <p><strong>Updates.</strong> A scheduled task refreshes the page every Monday at about 11 AM IST. Opening the page shows the last update; it does not search when opened. Articles stay for 12 weeks.</p>
+    <p><strong>Attribution.</strong> Article details come from PubMed (NCBI), bioRxiv and medRxiv records. Each entry links to its DOI.</p>
+    <p><strong>Summaries.</strong> Written by Claude from each abstract, in its own words. Tags are assigned by Claude. Check the paper before citing.</p>
+    <p><strong>Read and Zotero marks.</strong> Kept in your private space on this page, so they follow you across devices when you are signed in. Nobody else can see them.</p>
+  </div>
+</main>
+
+<div id="bar" hidden>
+  <span class="n" id="barN"></span>
+  <button class="primary" id="barZot">Copy DOIs for Zotero</button>
+  <button class="plain" id="barRead">Mark read</button>
+  <button class="plain" id="barClear">Clear</button>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="manual" hidden>
+  <div class="box" role="dialog" aria-label="Copy manually">
+    <strong>Copy this, then paste it into Zotero</strong>
+    <textarea id="manualText" readonly></textarea>
+    <button class="plain" id="manualClose">Close</button>
+  </div>
+</div>
+
+<script>
+const STIM = ["TMS","TUS","DBS","TDCS"];
+const TAG_LABEL = { TMS:"TMS", TUS:"Ultrasound", DBS:"DBS", TDCS:"tDCS/tACS", BG:"Basal ganglia", EF:"Executive function" };
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const LOCAL_KEY = "bsd_state_v2";
+
+let MANIFEST = null;
+let WEEKS = [];
+let ITEMS = [];
+let BY_ID = {};
+let LATEST = "";
+
+function fmt(d) {
+  const p = String(d || "").split("-");
+  if (p.length !== 3) return String(d || "");
+  return Number(p[2]) + " " + MONTHS[Number(p[1]) - 1] + " " + p[0];
+}
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+}
+function hasStim(it) { return it.tags.some(t => STIM.includes(t)); }
+function isCore(it) { return hasStim(it) && (it.tags.includes("EF") || it.tags.includes("BG")); }
+function isPreprint(it) { return it.source === "bioRxiv" || it.source === "medRxiv"; }
+function inSection(it, s) {
+  if (s === "core") return isCore(it);
+  if (s === "stim") return hasStim(it);
+  if (s === "ef") return it.tags.includes("EF");
+  if (s === "bg") return it.tags.includes("BG");
+  return true;
+}
+function pubmedLink(q, from, to) {
+  const term = "(" + q + ") AND (\"" + from.replace(/-/g, "/") + "\"[EDAT] : \"" + to.replace(/-/g, "/") + "\"[EDAT])";
+  return "https://pubmed.ncbi.nlm.nih.gov/?term=" + encodeURIComponent(term) + "&sort=date";
+}
+
+// ---------- data ----------
+function getJSON(path) {
+  return fetch(path, { cache: "no-cache" }).then(r => {
+    if (!r.ok) throw new Error(path + ": " + r.status);
+    return r.json();
+  });
+}
+async function loadData() {
+  MANIFEST = await getJSON("data/manifest.json");
+  const weekDates = Array.isArray(MANIFEST.weeks) ? MANIFEST.weeks : [];
+  const loaded = await Promise.all(weekDates.map(w => getJSON("data/week-" + w + ".json").catch(() => null)));
+  WEEKS = loaded.filter(Boolean).sort((a, b) => b.added.localeCompare(a.added));
+  const seenIds = new Set();
+  ITEMS = [];
+  WEEKS.forEach(w => {
+    (w.items || []).forEach(it => {
+      if (!it || !it.id || seenIds.has(it.id)) return;
+      seenIds.add(it.id);
+      ITEMS.push(Object.assign({}, it, { added: w.added, tags: Array.isArray(it.tags) ? it.tags : [], points: Array.isArray(it.points) ? it.points : [] }));
+    });
+  });
+  BY_ID = {};
+  ITEMS.forEach(it => { BY_ID[it.id] = it; });
+  LATEST = WEEKS.length ? WEEKS[0].added : "";
+}
+
+// ---------- state: read + zotero marks (cloud when available, this browser otherwise) ----------
+let state = { read: {}, zotero: {} };
+let docRef = null;
+let writing = false, dirty = false, merged = false, retries = 0;
+
+function loadLocal() {
+  try {
+    const s = JSON.parse(localStorage.getItem(LOCAL_KEY) || "null");
+    if (s && typeof s === "object") {
+      state.read = s.read || {};
+      state.zotero = s.zotero || {};
+    } else {
+      const old = JSON.parse(localStorage.getItem("bsd_seen_v1") || "[]");
+      if (Array.isArray(old)) old.forEach(id => { state.read[id] = true; });
+    }
+  } catch (e) {}
+}
+function saveLocal() {
+  try { localStorage.setItem(LOCAL_KEY, JSON.stringify(state)); } catch (e) {}
+}
+function setSync(mode) {
+  const msg = {
+    loading: "Syncing your read and Zotero marks…",
+    cloud: "Read and Zotero marks sync across your devices.",
+    local: "Read and Zotero marks are saved in this browser only.",
+    slow: "Can't reach sync yet. Marks are saved in this browser for now."
+  }[mode] || "";
+  document.getElementById("sync").textContent = msg;
+}
+function persist() {
+  saveLocal();
+  if (!docRef) return;
+  if (writing) { dirty = true; return; }
+  writing = true;
+  dirty = false;
+  docRef.set({ read: state.read, zotero: state.zotero })
+    .then(() => { retries = 0; })
+    .catch(err => {
+      const code = err && err.code;
+      if (code === "unavailable" && retries < 3) {
+        retries++;
+        dirty = true;
+      } else {
+        docRef = null;
+        setSync("local");
+      }
+    })
+    .finally(() => {
+      writing = false;
+      if (dirty && docRef) {
+        if (retries > 0) setTimeout(persist, 1500 + Math.random() * 1500);
+        else persist();
+      }
+    });
+}
+function countKeys(o) { return Object.keys(o || {}).length; }
+
+async function initSync() {
+  const c = window.claude;
+  if (!c || typeof c.use !== "function") { setSync("local"); return; }
+  setSync("loading");
+  try {
+    const [db, user] = await Promise.all([c.use("db"), c.use("user")]);
+    if (!db || !user) { setSync("local"); return; }
+    const uid = await user.id();
+    if (!uid) { setSync("local"); return; }
+    docRef = db.doc("data/users/" + uid + "/digest");
+    const timer = setTimeout(() => { if (!merged) setSync("slow"); }, 10000);
+    docRef.onSnapshot(snap => {
+      if (snap.metadata.fromCache) return;
+      if (snap.metadata.hasPendingWrites || writing || dirty) return;
+      const d = snap.exists ? (snap.data() || {}) : {};
+      const remote = { read: Object.assign({}, d.read || {}), zotero: Object.assign({}, d.zotero || {}) };
+      if (!merged) {
+        merged = true;
+        clearTimeout(timer);
+        setSync("cloud");
+        const union = {
+          read: Object.assign({}, remote.read, state.read),
+          zotero: Object.assign({}, remote.zotero, state.zotero)
+        };
+        state = union;
+        saveLocal();
+        render();
+        if (countKeys(union.read) !== countKeys(remote.read) || countKeys(union.zotero) !== countKeys(remote.zotero)) persist();
+        return;
+      }
+      state = remote;
+      saveLocal();
+      render();
+    }, () => {
+      clearTimeout(timer);
+      docRef = null;
+      setSync("local");
+    });
+  } catch (e) {
+    docRef = null;
+    setSync("local");
+  }
+}
+
+// ---------- UI ----------
+let section = "all";
+let filter = "any";
+const picked = new Set();
+const listEl = document.getElementById("list");
+const countEl = document.getElementById("count");
+const qEl = document.getElementById("q");
+
+function header() {
+  document.getElementById("sub").textContent = "Updated " + fmt(MANIFEST.updated) +
+    " · brain stimulation, executive functions and the basal ganglia, separately and combined";
+  const cov = MANIFEST.coverage || {};
+  document.getElementById("covNote").innerHTML =
+    "<strong>Checked through.</strong> PubMed records added through " + esc(fmt(cov.pubmed)) +
+    "; bioRxiv through " + esc(fmt(cov.biorxiv)) + "; medRxiv through " + esc(fmt(cov.medrxiv)) + ".";
+  const w = WEEKS[0];
+  const box = document.getElementById("weekbox");
+  if (w && w.range && w.counts && MANIFEST.queries) {
+    const q = MANIFEST.queries;
+    const r = w.range;
+    const coreQ = q.stim + " AND (" + q.ef + " OR " + q.bg + ")";
+    box.innerHTML = "<strong>Full lists on PubMed, records added " + esc(fmt(r.from)) + " – " + esc(fmt(r.to)) + "</strong>" +
+      '<a href="' + esc(pubmedLink(q.stim, r.from, r.to)) + '" target="_blank" rel="noopener">Brain stimulation (' + esc(w.counts.stim) + ')</a>' +
+      '<a href="' + esc(pubmedLink(q.ef, r.from, r.to)) + '" target="_blank" rel="noopener">Executive functions (' + esc(w.counts.ef) + ')</a>' +
+      '<a href="' + esc(pubmedLink(q.bg, r.from, r.to)) + '" target="_blank" rel="noopener">Basal ganglia (' + esc(w.counts.bg) + ')</a>' +
+      '<a href="' + esc(pubmedLink(coreQ, r.from, r.to)) + '" target="_blank" rel="noopener">Stimulation × EF/BG</a>';
+    box.hidden = false;
+  }
+}
+
+function visible() {
+  const q = qEl.value.trim().toLowerCase();
+  return ITEMS.filter(it => {
+    if (!inSection(it, section)) return false;
+    if (filter === "latest" && it.added !== LATEST) return false;
+    if (filter === "unread" && state.read[it.id]) return false;
+    if (filter === "preprint" && !isPreprint(it)) return false;
+    if (TAG_LABEL[filter] && !it.tags.includes(filter)) return false;
+    if (!q) return true;
+    const hay = (it.title + " " + it.journal + " " + it.type + " " + it.points.map(p => p[1]).join(" ")).toLowerCase();
+    return hay.includes(q);
+  }).sort((a, b) =>
+    b.added.localeCompare(a.added) ||
+    (Number(isCore(b)) - Number(isCore(a))) ||
+    String(b.date).localeCompare(String(a.date)));
+}
+
+function render() {
+  const items = visible();
+  const unread = ITEMS.filter(it => !state.read[it.id]).length;
+  countEl.textContent = items.length + " of " + ITEMS.length + " articles · " + unread + " unread";
+  if (!items.length) {
+    listEl.innerHTML = '<div class="empty">No matches.</div>';
+  } else {
+    listEl.innerHTML = items.map(it => {
+      const isNew = !state.read[it.id];
+      const inZot = !!state.zotero[it.id];
+      const isPicked = picked.has(it.id);
+      const tags = (isCore(it) ? '<span class="tag core">Core match</span>' : '') +
+        it.tags.map(t => '<span class="tag">' + esc(TAG_LABEL[t] || t) + '</span>').join("");
+      const pts = it.points.map(p => '<li><strong>' + esc(p[0]) + ':</strong> ' + esc(p[1]) + '</li>').join("");
+      return '<article class="card' + (isPicked ? ' picked' : '') + '">' +
+        '<div class="head"><input type="checkbox" data-pick="' + esc(it.id) + '"' + (isPicked ? ' checked' : '') + ' aria-label="Select for Zotero">' +
+        '<h2>' + esc(it.title) + (isNew ? '<span class="new">NEW</span>' : '') + '</h2></div>' +
+        '<div class="meta">' + esc(it.journal) + ' · ' + esc(fmt(it.date)) + ' · ' + esc(it.type) + ' · added ' + esc(fmt(it.added)) + '</div>' +
+        '<div class="tags">' + tags + '<span class="tag src">' + esc(it.source || "PubMed") + '</span></div>' +
+        '<ul class="points">' + pts + '</ul>' +
+        '<div class="actions">' +
+          '<button class="zot' + (inZot ? ' done' : '') + '" data-act="zotero" data-id="' + esc(it.id) + '">' + (inZot ? 'DOI copied for Zotero ✓' : 'Add to Zotero') + '</button>' +
+          '<button class="link" data-act="read" data-id="' + esc(it.id) + '">' + (isNew ? 'Mark as read' : 'Mark as unread') + '</button>' +
+          '<a href="https://doi.org/' + esc(it.doi) + '" target="_blank" rel="noopener" data-open="' + esc(it.id) + '">DOI: ' + esc(it.doi) + '</a>' +
+        '</div>' +
+      '</article>';
+    }).join("");
+  }
+  document.getElementById("bar").hidden = picked.size === 0;
+  document.getElementById("barN").textContent = picked.size + " selected";
+}
+
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 5000);
+}
+function showManual(text) {
+  const m = document.getElementById("manual");
+  const ta = document.getElementById("manualText");
+  ta.value = text;
+  m.hidden = false;
+  ta.focus();
+  ta.select();
+}
+function copyText(text) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(() => true, () => false);
+    }
+  } catch (e) {}
+  return Promise.resolve(false);
+}
+function sendToZotero(ids) {
+  const items = ids.map(id => BY_ID[id]).filter(Boolean);
+  if (!items.length) return;
+  const text = items.map(it => it.doi).join("\n");
+  copyText(text).then(ok => {
+    items.forEach(it => { state.zotero[it.id] = true; });
+    persist();
+    render();
+    if (ok) {
+      toast(items.length === 1
+        ? "DOI copied. In Zotero, click the magic wand (Add Item by Identifier) and paste."
+        : items.length + " DOIs copied. Paste them all into Zotero's Add Item by Identifier box.");
+    } else {
+      showManual(text);
+    }
+  });
+}
+function setRead(ids, value) {
+  ids.forEach(id => { if (value) state.read[id] = true; else delete state.read[id]; });
+  persist();
+  render();
+}
+
+function wireChips(rowId, attr, onPick) {
+  const row = document.getElementById(rowId);
+  row.addEventListener("click", e => {
+    const b = e.target.closest("button[" + attr + "]");
+    if (!b) return;
+    row.querySelectorAll("button[" + attr + "]").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    onPick(b.getAttribute(attr));
+    render();
+  });
+}
+wireChips("sections", "data-s", v => { section = v; });
+wireChips("filters", "data-f", v => { filter = v; });
+listEl.addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]");
+  if (b) {
+    const id = b.dataset.id;
+    if (b.dataset.act === "zotero") sendToZotero([id]);
+    else if (b.dataset.act === "read") setRead([id], !state.read[id]);
+    return;
+  }
+  const a = e.target.closest("a[data-open]");
+  if (a && !state.read[a.dataset.open]) setRead([a.dataset.open], true);
+});
+listEl.addEventListener("change", e => {
+  const cb = e.target.closest("input[data-pick]");
+  if (!cb) return;
+  if (cb.checked) picked.add(cb.dataset.pick); else picked.delete(cb.dataset.pick);
+  render();
+});
+document.getElementById("barZot").addEventListener("click", () => sendToZotero([...picked]));
+document.getElementById("barRead").addEventListener("click", () => { setRead([...picked], true); picked.clear(); render(); });
+document.getElementById("barClear").addEventListener("click", () => { picked.clear(); render(); });
+document.getElementById("readAll").addEventListener("click", () => setRead(visible().map(it => it.id), true));
+document.getElementById("manualClose").addEventListener("click", () => { document.getElementById("manual").hidden = true; });
+qEl.addEventListener("input", render);
+
+loadLocal();
+loadData().then(() => {
+  header();
+  render();
+}).catch(() => {
+  document.getElementById("sub").textContent = "Brain stimulation, executive functions and the basal ganglia";
+  listEl.innerHTML = '<div class="empty">Couldn\'t load the article list. Try reloading the page.</div>';
+});
+initSync();
+</script>
+</body>
+</html>

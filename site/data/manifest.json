@@ -1,0 +1,32 @@
+{
+ "updated": "2026-11-16",
+ "coverage": {
+  "pubmed": "2026-11-08",
+  "biorxiv": "2026-11-08",
+  "medrxiv": "2026-11-08"
+ },
+ "queries": {
+  "stim": "(\"transcranial magnetic stimulation\"[tiab] OR TMS[tiab] OR rTMS[tiab] OR \"theta burst\"[tiab] OR \"TMS-EEG\"[tiab] OR \"transcranial ultrasound\"[tiab] OR \"transcranial focused ultrasound\"[tiab] OR \"low-intensity focused ultrasound\"[tiab] OR \"ultrasound neuromodulation\"[tiab] OR TUS[tiab] OR \"deep brain stimulation\"[tiab] OR \"transcranial direct current stimulation\"[tiab] OR tDCS[tiab] OR \"transcranial alternating current stimulation\"[tiab] OR tACS[tiab] OR \"Transcranial Magnetic Stimulation\"[MeSH] OR \"Deep Brain Stimulation\"[MeSH] OR \"Transcranial Direct Current Stimulation\"[MeSH])",
+  "ef": "(\"executive function\"[tiab] OR \"executive functions\"[tiab] OR \"executive functioning\"[tiab] OR \"executive control\"[tiab] OR \"executive dysfunction\"[tiab] OR \"Executive Function\"[MeSH] OR \"cognitive control\"[tiab] OR \"cognitive flexibility\"[tiab] OR \"set shifting\"[tiab] OR \"set-shifting\"[tiab] OR \"task switching\"[tiab] OR \"inhibitory control\"[tiab] OR \"response inhibition\"[tiab] OR \"cognitive inhibition\"[tiab] OR \"working memory\"[tiab])",
+  "bg": "(\"basal ganglia\"[tiab] OR striatum[tiab] OR striatal[tiab] OR caudate[tiab] OR putamen[tiab] OR \"globus pallidus\"[tiab] OR \"subthalamic nucleus\"[tiab] OR \"substantia nigra\"[tiab] OR \"nucleus accumbens\"[tiab] OR \"Corpus Striatum\"[MeSH] OR \"Globus Pallidus\"[MeSH] OR \"Subthalamic Nucleus\"[MeSH])"
+ },
+ "weeks": [
+  "2026-11-16"
+ ],
+ "seen": {
+  "10.1016/j.jad.2026.122652": "2026-11-16",
+  "10.1097/wnr.0000000000002308": "2026-11-16",
+  "10.1016/j.jad.2026.122269": "2026-11-16",
+  "10.1080/17518423.2026.2746719": "2026-11-16",
+  "10.1016/j.ultrasmedbio.2026.07.030": "2026-11-16",
+  "10.3171/2026.3.jns251474": "2026-11-16",
+  "10.1002/ana.78310": "2026-11-16",
+  "10.1038/s41380-026-03710-4": "2026-11-16",
+  "10.5334/tohm.1241": "2026-11-16",
+  "10.1007/s10072-026-09512-4": "2026-11-16",
+  "10.3389/fped.2026.1867739": "2026-11-16",
+  "10.1159/sfn/aeuag006": "2026-11-16",
+  "10.1038/s41531-026-01567-6": "2026-11-16",
+  "10.1080/10826084.2026.2752116": "2026-11-16"
+ }
+}
